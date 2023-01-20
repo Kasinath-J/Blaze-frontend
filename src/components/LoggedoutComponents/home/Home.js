@@ -96,7 +96,7 @@ export function Home(){
             </section>
             
             <section id="home_office_bearers">
-                {data&&len(data)>0&&
+                {data&&data.length>0>0&&
                     <div style={{backgroundColor:"white",padding:"8%",color:"black"}}>
                         <div className="container" >
 
