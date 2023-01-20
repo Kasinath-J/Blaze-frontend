@@ -1,0 +1,10 @@
+#filterSearchUser .react-datalist-input__textbox
+{
+    height:15px;
+    min-width:100px !important;
+}
+
+#filterSearchUser .react-datalist-input__listbox-option
+{
+    overflow: hidden;
+}

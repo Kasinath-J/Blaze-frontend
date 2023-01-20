@@ -1,0 +1,13 @@
+
+.react-datalist-input__textbox{
+    padding: 12px !important;
+    font-size: 1rem !important;
+}
+
+.react-datalist-input__container:focus{
+    border: none;
+}
+
+.react-datalist-input__listbox-option{
+    padding: 10px !important;
+}

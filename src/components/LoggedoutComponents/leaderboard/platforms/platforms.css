@@ -1,0 +1,18 @@
+.graphs{
+    border-radius:5px;
+    background-color:white !important;
+    margin-bottom:3%;
+    padding:3% 3% 0 0;
+}
+
+.graphContainer{
+    margin-top:1%;
+    background-color:#F1F5F7;
+    padding:1%;
+}
+
+.userContainer{
+    margin-top:1%;
+    background-color:#F1F5F7;
+    padding:1%;
+}

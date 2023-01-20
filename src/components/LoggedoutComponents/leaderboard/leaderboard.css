@@ -1,0 +1,21 @@
+.highlight{
+    background-color: rgb(120, 131, 233) !important;
+    color : white !important;
+}
+
+.problemCLass:hover{
+    background-color: #7a25be !important;
+    color: white !important;
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide_scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+.hide_scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: 0;  /* Firefox */
+  }
