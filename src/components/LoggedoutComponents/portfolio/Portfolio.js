@@ -72,7 +72,8 @@ export function Portfolio() {
   })
 
   return (
-    <div style={{ background:"linear-gradient(to right, black , #1c1056, #494078, #605889, #bbb7cc)"}}>
+    // <div style={{ background:"linear-gradient(to right, black , #1c1056, #494078, #605889, #bbb7cc)"}}>
+    <div style={{ background:"linear-gradient(135deg, #6a11cb 10%, #2575fc 100%)"}}>
       <div className="container-fluid" >
         <div className="row" style={{ color: "white",height:window_width<=992?null:window_height}}>
           {/* left container */}

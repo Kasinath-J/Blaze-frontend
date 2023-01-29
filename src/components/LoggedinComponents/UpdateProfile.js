@@ -1,8 +1,7 @@
 import React,{ useState ,useEffect} from "react";
-import {Row,Col,Form,Button} from 'react-bootstrap';
+import {Row,Col,Form,Button,ToastContainer,Toast,Spinner} from 'react-bootstrap';
 import { axiosInstance } from "../axios/loggedinAxios";
 import { useNavigate } from "react-router-dom";
-import uploadIcon from "../../images/updatePortfolio/upload.png"
 
 import codechefSteps from "../../images/updatePortfolio/Codechef.png"
 import codeforcesSteps from "../../images/updatePortfolio/Codeforces.png"
@@ -27,42 +26,39 @@ export function UpdateProfile (props) {
 
     const [data,setData] = useState(null);
 
+    const [submitted,setSubmitted] = useState(null);
+    const success_msg = "Successfully saved";
+
+    const [loading,setLoading] = useState(false);
+    
+    const [toast, setToast] = useState(true);
+    const toggleToast = () => setToast(!toast);
+
+
     var window_height = window.innerHeight;
     const navigate = useNavigate();
 
     useEffect(() => {
 		axiosInstance.get('api/profile/'+localStorage.getItem('email')+'/')
         .then((res) => {
-            setData(res.data);
-		})
+
+            if(res.data.name!==null)
+                setData(res.data);
+            
+            else
+            {
+                setData({
+                            ...res.data,
+                            "name": res.data.id.split("@")[0]
+                        }
+                    )
+            }
+        }) 
         .catch((err)=>{
             navigate('/');
         })
 	}, []);
 
-        
-
-    const initialErr = {
-        name:null,
-        leetcode:null,
-        github:null,
-        hackerrank:null,
-        linkedin:null,
-        codechef:null,
-        codeforces:null
-    }
-    const [err,setErr] = useState(initialErr);
-
-    const initialClasses = {
-        name:"",
-        leetcode:"",
-        github:"",
-        hackerrank:"",
-        linkedin:"",
-        codechef:"",
-        codeforces:"",
-    }
-    const [classes,setClasses] = useState(initialClasses);
     const stepOptions = {
         name: nameSteps,
         leetcode: leetcodeSteps,
@@ -74,29 +70,18 @@ export function UpdateProfile (props) {
     }
     const [steps,setSteps] = useState(stepOptions.linkedin)
 
-
-    const upload_img = <img src={uploadIcon} height="37px" width="37px" style={{padding:"0px",margin:"0"}} alt="upload"/>;
-    const loading_img = <div className="spinner-grow text-primary" role="status">
-                             <span className="visually-hidden">Loading...</span>
-                         </div>
-
-    const initialUpload = {
-        name:upload_img,
-        leetcode:upload_img,
-        github:upload_img,
-        hackerrank:upload_img,
-        linkedin:upload_img,
-        codechef:upload_img,
-        codeforces:upload_img,
-    }
-
-    const[uploadOrLoad,setUploadOrLoad] = useState(initialUpload);
-
 	function handleChange(e){
+        if(e.target.name ==="name" && e.target.value.trim()==="")
+        {
+            return;
+        }
+
 		setData({
 			...data,
 			[e.target.name]: e.target.value.trim(),
 		});
+
+        setSubmitted(null);        
 	};
 
     function handleFocus(e){
@@ -106,67 +91,41 @@ export function UpdateProfile (props) {
     
     function handleSubmit(e){
         e.preventDefault();
-        var name = e.currentTarget.name;
-        var value = data[name]
-        var sendData = {
-            id:data.id,
-            [name]:value
-        }
-        
-        setUploadOrLoad({
-            ...uploadOrLoad,
-            [name]:loading_img,
-        })
-
+        var sendData = data
+        setLoading(true);
 
         axiosInstance.put('api/profile/'+localStorage.getItem('email')+'/', sendData)
 			.then((res) => {
                 if(res.status===200)
                 {
-                    setErr({
-                        ...err,
-                        [name]:null,
-                    })
-                    setClasses({
-                        ...classes,
-                        [name]:'is-valid'
-                    })
+                    setToast(true);
+                    setSubmitted(success_msg)
                 }
 			})
             .catch(
                 (error)=>{
-                    console.log(error)
+
                     if (error.response.status>=400 && error.response.status<500)
                     {
                         logout()
                     }
+                    setToast(true);
+                    setSubmitted("Error while submitting")
                         
-                    setErr({
-                        ...err,
-                        [name]:error.response.data[name],
-                    })
-                    setClasses({
-                        ...classes,
-                        [name]:'is-invalid'
-                    })
                 }
             )
-            .finally(
-                ()=>{
-                    setUploadOrLoad({
-                        ...uploadOrLoad,
-                        [name]:upload_img,
-                    })
-                }
-            )
+            .finally(()=>{
+                setLoading(false);
+            })
+
     }
 
 
     if(data===null )
         return <Loading/>;    
-            
+
     var labels = [
-        {display:"Name",name:"name"},
+        {display:"Name*",name:"name"},
         {display:"Leetcode",name:"leetcode",front_URL:"https://leetcode.com/",back_URL:"/"},
         {display:"Github",name:"github",front_URL:"https://github.com/",back_URL:""},
         {display:"Linkedin",name:"linkedin",front_URL:"https://www.linkedin.com/in/",back_URL:"/"},
@@ -176,11 +135,11 @@ export function UpdateProfile (props) {
     ]
 
     var form = labels.map((label,index)=>{
-        return <Form key={index}>
+        return <div key={index}>
                     <Form.Group as={Row} style={{margin:"3.5% 0"}} >
-                        <Form.Label column sm="3" style={{fontSize:"0.9rem"}}>{label.display}</Form.Label>
-                        <Col sm="7" xs="9">
-                            <Form.Control className={classes[label.name]} name={label.name} type="text" onChange={handleChange} onFocus={handleFocus} value={data[label.name]}/>
+                        <Form.Label column sm="3" style={{fontSize:"1rem"}}>{label.display}</Form.Label>
+                        <Col sm="8" xs="9">
+                            <Form.Control name={label.name} type="text" onChange={handleChange} onFocus={handleFocus} value={data[label.name]}/>
                         </Col>
                         <Col sm="1" xs="1" style={{paddingLeft:"0px",paddingTop:"3px"}}>
                             {
@@ -189,26 +148,12 @@ export function UpdateProfile (props) {
                                 </a>
                             }                        
                         </Col>
-                        <Col sm="1" xs="1" style={{margin:"0",padding:"0"}}>
-                            <Button type="submit" onClick={handleSubmit} name={label.name} style={{padding:"0",backgroundColor:"white",border:"None"}}>
-                                {uploadOrLoad[label.name]}
-                            </Button>
-                        </Col>
-                        {
-                            err[label.name]!==null&&
-                            <Row>
-                                <Col sm="3"></Col>
-                                <Col sm="8">
-                                    <p style={{color:"red",margin:"0 10px",fontSize:"0.75rem"}}>{err[label.name]}</p>
-                                </Col>
-                            </Row>
-                        }
                     </Form.Group>
-                </Form>
+                </div>
                 })
 
     return (
-        <div style={{backgroundImage:"linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%)",minHeight:window_height*0.92,padding:"3% 5%"}} >
+        <div style={{backgroundImage:"linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%)",minHeight:window_height*0.92,padding:"2% 5% 1.5%"}} >
             <div className="container">                                
           
                 <div className="row" style={{backgroundColor:"white",margin:"auto"}}>
@@ -218,14 +163,33 @@ export function UpdateProfile (props) {
                     <div className="col-md-7 col-12" style={{padding:"4% 3%"}} >
                         <h2 className="mb-4">Update details 
                             <div className="lead " style={{display:"inline-block",paddingLeft:"5px"}}> by tomorrow</div>
-                        </h2>                                
-                        {form}
+                        </h2>    
+                        <Form >
+                            {form}
+                            <p style={{float:"left",marginLeft:"10px",fontSize:"0.85rem"}}>
+                                Click <img src="https://img.icons8.com/ios/50/000000/open-in-window.png" height="20px" width="28px" alt="verify" style={{padding:"0 4px"}}/>
+                                and verify your username, before submitting
+                            </p>
+                            <Button variant="primary" type="submit" style={{float:"right",marginRight:"20px"}} onClick={handleSubmit}>
+                                {loading===false?"Submit":<Spinner animation="border" variant="light" />}
+                            </Button>
+                        </Form>                            
                     </div>
                 </div>
                 
                 
 
             </div>
+            {
+                submitted!==null && <ToastContainer className="p-3" position="bottom-center">
+                        <Toast show={toast} onClose={toggleToast} delay={2000} autohide bg={submitted===success_msg?"success":"danger"}>
+                            <Toast.Body>
+                                <strong className="me-auto" >{submitted}</strong>
+                            </Toast.Body>
+                        </Toast>
+                    </ToastContainer>
+                
+            }
         </div>
     )
     
