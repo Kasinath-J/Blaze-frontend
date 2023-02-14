@@ -16,7 +16,7 @@ export function SearchPortfolio(props)
     const [search,setSearch] = useState("");
 
     useEffect(() => {
-        axiosInstance.get(`api/emaillist/`)
+        axiosInstance.get(`users/emaillist/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setOptions(resp);
@@ -58,8 +58,8 @@ export function SearchPortfolio(props)
         var temp = getRandomInt(count);
         return data.slice(temp,temp+5);
     }
-
-    return <div style={{ background:"linear-gradient(to right, black , #1c1056, #494078, #605889, #bbb7cc)",minHeight:window_height,color:"white"}}>
+    
+    return <div style={{ background:"linear-gradient(135deg, #6a11cb 10%, #2575fc 100%)",minHeight:window_height,color:"white"}}>
         <div className="container">
 
             <div className='row'>

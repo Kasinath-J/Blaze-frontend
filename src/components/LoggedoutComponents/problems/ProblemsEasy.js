@@ -24,7 +24,7 @@ function IndividualQns(props) {
 export function ProblemsEasy() {
   const [data,setData] = useState(null)
   useEffect(() => {
-    axiosInstance.get("api/problemseasy/")
+    axiosInstance.get("problems/easy/")
      .then(resp => resp.data)
      .then(resp => {
         setData(resp);

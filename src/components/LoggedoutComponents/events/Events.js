@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button } from 'react-bootstrap';
 import {Link} from 'react-scroll'
 import { Loading } from '../../Utils/Loading';
 import {DateEvent} from './subComponents/DateEvent';
@@ -46,16 +47,22 @@ export class Events extends React.Component{
         this.state = {
             events:null,
             DataisLoaded:false,
+            categories:["All","CSBS","ASI"],
+            curr_category:"All"
         }
     }
 
     componentDidMount(){
-        axiosInstance.get(`api/events/`)
+        axiosInstance.get(`office/events/`)
         .then(resp => resp.data)
-        .then(resp => this.setState({
-            events:resp,
-            DataisLoaded:true,
-        }))
+        .then(resp => {
+                this.setState({
+                    events:resp,
+                    DataisLoaded:true,
+                })
+            }         
+   
+        )
     }
 
     render()
@@ -82,12 +89,28 @@ export class Events extends React.Component{
                     }
                 </section>
 
-
                 <section id="eventsGallery">
                     <div className='display-1' id="eventsTitle" style={{"marginTop":"4%"}}>Events</div>
+                    <div id="eventsFilter">
+                        {this.state.categories.map((category,index)=>{
+
+                            var variant = "light";
+                            if(this.state.curr_category===category)
+                                variant="dark";
+
+                            return <Button key={index} variant={variant} style={{margin:"5px",padding:"5px"}} 
+                                    onClick={()=>{
+                                        this.setState({
+                                            ...this.state,
+                                            curr_category:category,
+                                          });
+                                    }}
+                                    > {category} </Button>
+                        })}
+                    </div>
                     <Scrollbar event={this.state.events} /> 
                     {
-                        this.state.events.map((event,index)=>{
+                        this.state.events.filter((event)=>this.state.curr_category==="All" || event.officetype===this.state.curr_category).map((event,index)=>{
                         return(
                                 <DateEvent event={event} key={index}/>
                             );

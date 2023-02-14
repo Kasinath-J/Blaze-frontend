@@ -13,7 +13,7 @@ export function CodeforcesDisplay(){
     const [search,setSearch] = useState(localStorage.getItem("search"))       //used for filtering data of diiferent members
 
     useEffect(() => {
-        axiosInstance.get(`api/codeforces/`)
+        axiosInstance.get(`platforms/codeforces/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setData(resp)

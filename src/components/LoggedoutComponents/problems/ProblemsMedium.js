@@ -46,7 +46,7 @@ export function ProblemsMedium() {
 
   const [data,setData] = useState(null)
   useEffect(() => {
-    axiosInstance.get("api/problemsmedium/")
+    axiosInstance.get("problems/medium/")
      .then(resp => resp.data)
      .then(resp => setData(resp))
     }, [])

@@ -15,7 +15,7 @@ export function LinkedinDisplay(){
     const [search,setSearch] = useState(localStorage.getItem("search"))       //used for filtering data of diiferent members
 
     useEffect(() => {
-        axiosInstance.get(`api/linkedin/`)
+        axiosInstance.get(`platforms/linkedin/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setData(resp)

@@ -12,6 +12,8 @@ import linkedinLogo from "../../../images/portfolio/contact/linkedin.png";
 import hackerrankLogo from "../../../images/portfolio/contact/hackerrank.png";
 import gmailLogo from "../../../images/portfolio/contact/gmail.png"
 
+import asiLogo from "../../../images/home/ASI.png"
+
 import { About } from "./linkedin/About";
 import { Skills } from "./linkedin/Skills";
 import { Experience } from "./linkedin/Experience";
@@ -44,7 +46,7 @@ export function Portfolio() {
   const [data,setData] = useState(null)
   const [notUser,setNotUser] = useState(false)
   useEffect(() => {
-    axiosInstance.get(`api/user/${email}/`)
+    axiosInstance.get(`portfolio_detail/${email}/`)
      .then(resp=>resp.data)
      .then((resp) => {
         setData(resp);
@@ -91,11 +93,30 @@ export function Portfolio() {
                     </p>
                   </div>)
                   }
+
+                  {
+                    data['office_bearer']!==null &&
+                    <div className="lead">
+                      {data['office_bearer']['position']} of {data['office_bearer']['officetype']}
+                    </div>
+                  }
+
                   {
                     data['year']&&<p className="lead">
                       Batch {data['year']} - {data['year']-2000+4}
                     </p>
                   }
+
+                  {
+                    data['asi']===true &&
+                    <div style={{padding:"0",margin:"0 0 2%"}}>
+                      <img src={asiLogo} alt="asi logo" height="40px"/>
+                      <p className="lead mx-2" style={{display:"inline-block"}}>
+                        ASI Member
+                      </p>
+                    </div>  
+                  }
+
                 </section>
     
               {/* contact */}

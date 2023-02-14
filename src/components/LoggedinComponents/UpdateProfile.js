@@ -39,7 +39,7 @@ export function UpdateProfile (props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-		axiosInstance.get('api/profile/'+localStorage.getItem('email')+'/')
+		axiosInstance.get('users/profiledetail/'+localStorage.getItem('email')+'/')
         .then((res) => {
 
             if(res.data.name!==null)
@@ -94,7 +94,7 @@ export function UpdateProfile (props) {
         var sendData = data
         setLoading(true);
 
-        axiosInstance.put('api/profile/'+localStorage.getItem('email')+'/', sendData)
+        axiosInstance.put('users/profiledetail/'+localStorage.getItem('email')+'/', sendData)
 			.then((res) => {
                 if(res.status===200)
                 {

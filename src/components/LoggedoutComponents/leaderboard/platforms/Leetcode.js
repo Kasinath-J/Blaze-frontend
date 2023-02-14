@@ -14,7 +14,7 @@ export function LeetcodeDisplay(){
     const [search,setSearch] = useState(localStorage.getItem("search"))       //used for filtering data of diiferent members
   
     useEffect(() => {
-        axiosInstance.get(`api/leetcode/`)
+        axiosInstance.get(`platforms/leetcode/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setData(resp)

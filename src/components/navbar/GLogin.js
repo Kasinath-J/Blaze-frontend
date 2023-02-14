@@ -5,6 +5,7 @@ import {NavDropdown,ToastContainer,Toast} from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { axiosInstance } from '../axios/loggedoutAxios';
 
+// https://www.npmjs.com/package/@react-oauth/google
 
 export function GLogin(){
 
@@ -20,11 +21,12 @@ export function GLogin(){
           
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_OAUTH_CLIENTID}>
                     <GoogleLogin
-                        type="icon"
+                        size="medium"
+                        text="signin"
                         onSuccess={(credentialResponse) => {
                             
                             setIsLogged((prev)=>{
-                                axiosInstance.post(`api/verifyemail/`,{
+                                axiosInstance.post(`users/verifyemail/`,{
                                     "credential":credentialResponse.credential
                                 })
                                 .then(resp => resp.data)

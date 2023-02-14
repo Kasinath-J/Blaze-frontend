@@ -14,7 +14,7 @@ export function HackerrankDisplay(){
     const [search,setSearch] = useState(localStorage.getItem("search"))       //used for filtering data of diiferent members
 
     useEffect(() => {
-        axiosInstance.get(`api/hackerrank/`)
+        axiosInstance.get(`platforms/hackerrank/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setData(resp)

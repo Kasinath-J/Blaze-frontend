@@ -7,6 +7,7 @@ import tce_csbs_image from "../../../images/home/tce_csbs.png"
 import tce_logo from "../../../images/home/tce_logo.png"
 import unknown_image from "../../../images/home/unknown.jpg"
 import working_image from "../../../images/home/working.png"
+import asi_logo from "../../../images/home/ASI.png"
 
 
 function Photo(props) {
@@ -35,7 +36,7 @@ export function Home(){
     const [data,setData] = useState(null);
 
     useEffect(() => {
-		axiosInstance.get('api/officebearer/')
+		axiosInstance.get('office/officebearer/')
         .then((res) => {
             setData(res.data);
 		})
@@ -95,21 +96,65 @@ export function Home(){
                 </div>
             </section>
             
-            <section id="home_office_bearers">
-                {data&&data.length>0>0&&
+            <section id="home_csbs_office_bearers">
+                {data&&data.length>0&&
                     <div style={{backgroundColor:"white",padding:"8%",color:"black"}}>
                         <div className="container" >
 
                             <div style={{padding:"3% 0 5%",textAlign:"center"}}>
                                 <h1 className="display-3" style={{fontWeight:"500"}}>
-                                    Office Bearers
+                                    CSBS Office Bearers
                                 </h1>
                                 <h3><small className="text-muted">Of Academic Year {data[0].present_academic_year}</small></h3>    
                                 </div>
                             
                             <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around"}}>
                             {
-                                data.sort((a,b)=>a.rank-b.rank).map((d)=>{
+                                data.sort((a,b)=>a.rank-b.rank).filter((d)=>{return d.officetype==='CSBS'}).map((d)=>{
+                                    return <div className="col-6 col-md-3" key={d.id}>
+                                                <Photo data={d}/>
+                                            </div>
+                                })
+                            }
+                            </div>
+                                
+
+                        </div>
+                    </div>
+                }
+            </section>
+
+            <section id="home_about_asi_association">
+                <div style={{backgroundColor:"black",padding:"8%",color:"white"}}>
+                    <div className="container" >
+                        <div className="row justify-content-center" >
+                            <div className="col-lg-3 col-6 d-flex flex-wrap align-items-center" style={{textAlign:"center"}}>
+                                <img src={asi_logo} width="100%" alt="" />
+                            </div>
+                            <div className="col-lg-9 col-12" >
+                                <h1 className="display-3" style={{padding:"3% 0",fontWeight:"500"}}>About ASI</h1>
+                                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque perspiciatis, ex quam quas deserunt suscipit minus commodi corporis animi vitae aperiam, a sint ipsum rem recusandae maiores. Excepturi, eaque velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nemo cupiditate alias quidem, corrupti repellat perspiciatis eligendi possimus velit quas quae itaque ex pariatur rem, nesciunt ipsam id expedita laborum.</p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </section>
+            
+            <section id="home_asi_office_bearers">
+                {data&&data.length>0&&
+                    <div style={{backgroundColor:"white",padding:"8%",color:"black"}}>
+                        <div className="container" >
+
+                            <div style={{padding:"3% 0 5%",textAlign:"center"}}>
+                                <h1 className="display-3" style={{fontWeight:"500"}}>
+                                    ASI Office Bearers
+                                </h1>
+                                <h3><small className="text-muted">Of Academic Year {data[0].present_academic_year}</small></h3>    
+                                </div>
+                            
+                            <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around"}}>
+                            {
+                                data.sort((a,b)=>a.rank-b.rank).filter((d)=>{return d.officetype==='ASI'}).map((d)=>{
                                     return <div className="col-6 col-md-3" key={d.id}>
                                                 <Photo data={d}/>
                                             </div>
@@ -124,18 +169,16 @@ export function Home(){
             </section>
 
             <section id="home_footer">
-                <div style={{backgroundColor:"black",padding:"3% 8%",color:"white",borderTop:"1px solid white"}}>
+                <div style={{backgroundColor:"black",padding:"4%",color:"white",borderTop:"1px solid white"}}>
                     <div className="container" >
-                        <h3>Contact : </h3>
                         <div className="row">
-                            <div className="col-md-4 col-12">
-                                <p className="lead">Developer : Kasinath J</p>
+                            <div className="col-md-6 col-12 mb-3" style={{overflowWrap: "break-word"}}>
+                                <h4>Official Website : </h4>
+                                <a target="_blank" rel="noreferrer" href="https://www.tce.edu/academics/departments/computer-science-and-business-system">https://www.tce.edu/academics/departments/computer-science-and-business-system</a>
                             </div>
-                            <div className="col-md-8 col-12" style={{textAlign:"center"}}>
-                                <div style={{textAlign:"left"}}>
-                                    <p className="lead mb-0">Linkedin : </p>
-                                    <a href="https://www.linkedin.com/in/kasinath-j-2881a6200/" style={{textDecoration:"none",color:"white"}} target="_blank" rel="noreferrer"> https://www.linkedin.com/in/kasinath-j-2881a6200/</a>
-                                </div>
+                            <div className="col-md-6 col-12 mb-3">
+                                <h4>Developer : </h4>
+                                <a className="lead" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/kasinath-j-2881a6200/">Kasinath J</a>
                             </div>
                         </div>
                     </div>

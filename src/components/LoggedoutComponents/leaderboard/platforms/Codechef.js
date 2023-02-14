@@ -14,7 +14,7 @@ export function CodechefDisplay(){
     const [search,setSearch] = useState(localStorage.getItem("search"))       //used for filtering data of diiferent members
 
     useEffect(() => {
-        axiosInstance.get(`api/codechef/`)
+        axiosInstance.get(`platforms/codechef/`)
             .then(resp => resp.data)
             .then((resp) => {
                 setData(resp)
