@@ -63,17 +63,34 @@ export function ProblemsMedium() {
   if(data===null)
     return <Loading />;
 
-  var mediumQns = data['medium'].map((d,index)=>{
-    return <IndividualQns key={index} topic={d["tag"]} link={d["url"]} name={d["name"]}/>;
-  });
+  if(data["medium"]===null && data["contest"]===null)
+    return <div>No data available</div>
 
-  var leetcodeContest = data.contest.leetcode.map((l,index)=>{
-    return <IndividualContest key={index} data={l} bg = {gradient1[ Math.floor(Math.random()*gradient1.length) ]}/>
-  })
+  var mediumQns = null;
+  if (data["medium"] !==null)
+  {
+    mediumQns = data['medium'].map((d,index)=>{
+      return <IndividualQns key={index} topic={d["tag"]} link={d["url"]} name={d["name"]}/>;
+    });
+  }
 
-  var codechfContest = data.contest.codechef.map((l,index)=>{
-    return <IndividualContest key={index} data={l} bg = {gradient2[ Math.floor(Math.random()*gradient2.length) ]}/>
-  })
+  var leetcodeContest = null
+  
+  if (data.contest!==null && data.contest.leetcode!==null)
+  {
+    leetcodeContest = data.contest.leetcode.map((l,index)=>{
+      return <IndividualContest key={index} data={l} bg = {gradient1[ Math.floor(Math.random()*gradient1.length) ]}/>
+    })
+  }
+  
+  var codechefContest = null
+  if (data.codechef!==null && data.contest.codechef!==null)
+  {
+    codechefContest = data.contest.codechef.map((l,index)=>{
+      return <IndividualContest key={index} data={l} bg = {gradient2[ Math.floor(Math.random()*gradient2.length) ]}/>
+    })
+  }
+  
 
   return (
     <div style={{ backgroundColor: "#f2e9f9", minHeight:window.innerHeight*0.92}}>
@@ -112,7 +129,7 @@ export function ProblemsMedium() {
                 <section id="problemsMediumContestCodechefList">
                   <div className="h5">Codechef : </div>
                   <InfiniteCarousel lazyLoad={true} showSides={true} sidesOpacity={1} sideSize={0.1} slidesSpacing={3} pauseOnHover={true} slidesToScroll={2} slidesToShow={2} animationDuration={1000} cycleInterval={5000} autoCycle={true}>
-                    {codechfContest}
+                    {codechefContest}
                   </InfiniteCarousel>
                 </section>
                 

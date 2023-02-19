@@ -23,6 +23,13 @@ function ProjectModal(props) {
         </p>
       )}
 
+      {props.project.period&&
+      (
+        <p>Period : 
+          {props.project.period}
+        </p>
+      )}
+
       {props.project.description&&
       (
         <p>

@@ -22,7 +22,7 @@ export function CertCard(props) {
     {
         return(
             <a href={props.cert.url} target="blank" style={{textDecoration:"None"}}>
-                {ret_val}
+                {ret_val}           
             </a>
         );
     }

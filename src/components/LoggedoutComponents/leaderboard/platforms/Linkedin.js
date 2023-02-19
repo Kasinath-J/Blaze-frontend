@@ -34,22 +34,22 @@ export function LinkedinDisplay(){
         animationEnabled: true,
         height:graph_height,
         title:{
-            text: "Total Skills" ,
+            text: "Total Connections" ,
             fontFamily: "verdana",   
         },
-        axisY: axisY({interval: 10,includeZero: false,}),
+        axisY: axisY({interval: 150,includeZero: false,}),
         axisX:axisX({title:"Name",}),
         toolTip:blackToolTip(),
         colorSet:"blackToRed",	
         data: [
             {        
                 type: "column",  
-                dataPoints : year.filter(user=>Array.isArray(user.skills))
-                            .sort((a,b)=>{return b.skills.length - a.skills.length})
+                dataPoints : year.filter(user=>Number.isInteger(user.connectionsCount))
+                            .sort((a,b)=>{return b.connectionsCount - a.connectionsCount})
                             .map((user)=>{
                                     if(user.email===search)
-                                        return {y:user.skills.length, label:user.name, color:"black"};
-                                    return {y:user.skills.length, label:user.name};
+                                        return {y:user.connectionsCount, label:user.name, color:"black"};
+                                    return {y:user.connectionsCount, label:user.name};
                             })
 
             }

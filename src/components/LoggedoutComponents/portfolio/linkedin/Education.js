@@ -7,15 +7,15 @@ function EduCard(props) {
     <Card id="portfolioEducationCard" className="darkshadow" style={{ backgroundColor:props.bgcolor,color:"white",border:"none",marginBottom:"1rem"}}>
       <Card.Body>
         <p className="h5">{props.edu.schoolName}</p>
-        <p >
-          {props.edu.fieldOfStudy!=null&&(props.edu.fieldOfStudy)}  
-          <br />
-          {props.edu.degreeName!=null&&(props.edu.degreeName)}
-        </p>
-        {
-            props.edu.grade!=null&&
-            (<small class="text-muted">Grade : {props.edu.grade}</small>)
-        }
+        <div >
+          {
+            props.edu.degreeName_fieldOfStudy_grade!=null
+            &&
+            props.edu.degreeName_fieldOfStudy_grade.split('-').map(
+              (d)=><p>{d}</p>
+            )
+          }  
+        </div>
       </Card.Body>
     </Card>
   );

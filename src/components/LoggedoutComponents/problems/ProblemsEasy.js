@@ -30,11 +30,15 @@ export function ProblemsEasy() {
         setData(resp);
      })
     }, [])
+    if(data===null)
+    {
+      return <Loading />;
+    }
 
-  if(data===null)
-  {
-    return <Loading />;
-  }
+    if(data==="")
+    {
+      return <div>No data available</div>
+    }
   var qns = data.map((d,index)=>{
     return <IndividualQns key={index} topic={d["tag"]} link={d["url"]} name={d["name"]}/>;
   });

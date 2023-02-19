@@ -16,18 +16,11 @@ function PublicationModal(props) {
       </Modal.Header>
       <Modal.Body>
       {
-        props.publication.publisher&&
-        (<div>
-            Issued by : 
-                {props.publication.publisher}
-        </div>)
-      }
-
-      {
-        props.publication.issueDate&&
-        (<Modal.Title class="text-muted">
-          {props.publication.issueDate}
-        </Modal.Title>)
+        props.publication.publisher_issueDate!==null
+        &&
+        props.publication.publisher_issueDate.split("-").map(
+          (d)=><p style={{"margin":"0"}}>{d}</p>
+        )
       }
 
       {props.publication.url&&
@@ -62,8 +55,13 @@ function PublicationCard(props) {
               {props.publication.name!==null&&(props.publication.name)}
             </p>
             <p style={{fontWeight:100}}>
-              {props.publication.publisher!==null&&(props.publication.publisher.split(" ").slice(0,6).join(" "))}
-              {props.publication.issueDate!==null&&( " (" +  props.publication.issueDate + ") ")}
+              {
+                props.publication.publisher_issueDate!==null
+                &&
+                props.publication.publisher_issueDate.split("-").map(
+                  (d)=><p style={{"margin":"0"}}>{d}</p>
+                )
+              }
             </p>
 
             {

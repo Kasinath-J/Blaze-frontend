@@ -15,7 +15,6 @@ import gmailLogo from "../../../images/portfolio/contact/gmail.png"
 import asiLogo from "../../../images/home/ASI.png"
 
 import { About } from "./linkedin/About";
-import { Skills } from "./linkedin/Skills";
 import { Experience } from "./linkedin/Experience";
 import { Education } from "./linkedin/Education";
 import { Certifications } from "./linkedin/Certifications";
@@ -144,8 +143,6 @@ export function Portfolio() {
             <>
               <About about = {data['linkedin']['aboutus']} bgcolor={color_palatte[0]}/>
               <div className="my-4"></div>
-              <Skills skills = {data['linkedin']['skills']} bgcolor={color_palatte[1]}/>
-              <div className="my-5"></div>
               <Experience experiences = {data['linkedin']['experience']} display_count={15} bgcolor={color_palatte[2]}/>
               <div className="my-5"></div>
               <Education educations = {data['linkedin']['education']} bgcolor={color_palatte[3]}/>

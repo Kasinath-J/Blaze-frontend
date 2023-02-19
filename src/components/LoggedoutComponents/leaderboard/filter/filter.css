@@ -6,5 +6,26 @@
 
 #filterSearchUser .react-datalist-input__listbox-option
 {
-    overflow: hidden;
+    overflow-y: visible !important;
+    /* overflow-x: hidden !important; */
+    display: flex;  
+    flex-wrap: wrap;
+    width:100%;
 }
+
+#filterSearchUser .react-datalist-input__listbox
+{
+    overflow-y: scroll;
+    max-height: 600%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#filterSearchUser .react-datalist-input__listbox::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  #filterSearchUser .react-datalist-input__listbox {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: 0;  /* Firefox */
+  }

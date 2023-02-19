@@ -11,3 +11,8 @@
 .react-datalist-input__listbox-option{
     padding: 10px !important;
 }
+
+.react-datalist-input__listbox{
+    overflow-y: scroll;
+    max-height: 600%;
+}
