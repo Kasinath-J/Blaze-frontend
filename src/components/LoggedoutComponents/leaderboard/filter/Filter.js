@@ -56,14 +56,14 @@ export function Filter(props){
                             variant="dark";
                     }
 
-                    return <Button key={index} variant={variant} style={{margin:"5px 2px",padding:"0px 2px"}} onClick={()=>{update(year)}}>
+                    return <Button key={index} className='shadow' variant={variant} style={{margin:"5px 2px",padding:"0px 2px"}} onClick={()=>{update(year)}}>
                                 {year==="All"?"All":year%2000}
                             </Button>
                 })
             }
         </div>
     
-        <Form id="filterSearchUser" style={{fontSize:"0.7rem",padding:"0px",marginRight:"20px"}} >
+        <Form id="filterSearchUser" className='shadow' style={{fontSize:"0.7rem",padding:"0px",marginRight:"20px"}} >
             <div style={{display:"flex"}}>                    
                 <DatalistInput
                     placeholder="Enter email"

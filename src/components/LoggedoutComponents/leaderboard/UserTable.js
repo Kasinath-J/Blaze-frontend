@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export function UserTable(props){
     var user_data=[];
-    var iteration = Math.min(12,props.user_values.length);
+    var iteration = Math.min(10,props.user_values.length);
     for(let i=0;i<iteration;i++)
     {
         user_data.push(
@@ -19,7 +19,7 @@ export function UserTable(props){
     return(
         <div style={{borderRadius:"3px",backgroundColor:"white"}}>
             <h3 style={{fontSize:"1.5rem",padding:"5% 0 2%",margin:"0",textAlign:"center",backgroundColor:props.bgcolor}}>
-                Users
+                Top {iteration} Users
                 <p style={{fontSize:"15px",fontWeight:"400",marginTop:"5px"}}>Total : {props.total}</p>
             </h3>
             <div>

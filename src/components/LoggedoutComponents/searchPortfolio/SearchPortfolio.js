@@ -37,26 +37,40 @@ export function SearchPortfolio(props)
     {
         datalist = options.map((op)=>{return {id:op.email,value:op.email};})
     }
-
+    
     var available_years = new Map();
     for(var option of options)
     {
         var inst = available_years.has(option.year);
         if(inst===false)
-            available_years.set(option.year,1);
+        available_years.set(option.year,1);
         else
-            available_years.set(option.year,inst+1);
+        available_years.set(option.year,available_years.get(option.year)+1);
     }
     available_years = Array.from(available_years, ([year, count]) => ({ year, count }));
+
     
     function getRandomInt(max) {
         var temp =  Math.floor(Math.random() * max);
         return temp;
     }
 
-    function some(data,count){
-        var temp = getRandomInt(count);
-        return data.slice(temp,temp+5);
+    function some(data,maxcount){
+
+        var randints = []
+        var returnList = [];
+        var iteration = Math.min(4,maxcount)
+        var temp;
+        while(randints.length < iteration)
+        {
+            var temp = getRandomInt(maxcount);
+            if (randints.indexOf(temp)<0)
+            {
+                randints.push(temp);
+                returnList.push(data[temp])
+            }
+        }
+        return returnList;
     }
     
     return <div style={{ background:"linear-gradient(135deg, #6a11cb 10%, #2575fc 100%)",minHeight:window_height,color:"white"}}>

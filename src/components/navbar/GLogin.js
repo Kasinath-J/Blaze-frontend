@@ -47,6 +47,11 @@ export function GLogin(){
                                             setToast(true);
                                         }
                                     }
+                                    else if(jwt_decode(credentialResponse.credential)['email'].includes("@student.tce.edu")===false)
+                                    {
+                                        setFailure("Use TCE Student Mail ID to login");
+                                        setToast(true);
+                                    }
                                     else
                                     {
                                         setFailure("Not authorized to login, contact admin");

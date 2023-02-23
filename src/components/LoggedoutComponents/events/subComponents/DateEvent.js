@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import "./dateevent.css";
 
+
 var cardheight="200px";
 var window_innerwidth = window.innerWidth;
 if(window_innerwidth<425)
@@ -103,7 +104,7 @@ export function DateEvent(props){
             <p className='h4 event_name'>{props.event.name}</p> 
             <br/>
             <div style={{display:"flex",flexWrap: "wrap","marginBottom":"2%"}}>
-                 <DisplayCard src={props.event.imageUrl1}  />
+                 <DisplayCard src={props.event.imageUrl1} className="shadow" />
                  <DisplayCard src={props.event.imageUrl2}  />
                  <DisplayCard src={props.event.imageUrl3}  />
                  <DisplayCard src={props.event.imageUrl4}  />
@@ -111,7 +112,7 @@ export function DateEvent(props){
 
                   {
                     (props.event.description!==null&&props.event.description!=="")&&(
-                      <div className='eventDescription' style={{margin:"5px 2px",display:"inline-block",width:"200px", height:cardheight}}>                    
+                      <div className='eventDescription shadow' style={{margin:"5px 2px",display:"inline-block",width:"200px", height:cardheight}}>                    
                         <button onClick={() => setModalShow(true)} style={{width:"100%", height:"100%", padding:"0", border:"None", color:"black", textAlign:"left"}}>
                           <Card style={{height:"100%",width:"100%", fontSize:"1rem"}}>  
                             <Card.Body>
@@ -132,7 +133,7 @@ export function DateEvent(props){
                   
                   {
                     (props.event.winner1!==null&&props.event.winner1!=="")&&(
-                      <Card className='eventWinners' style={{margin:"5px 2px",width:"200px",fontSize:"1rem"}}>  
+                      <Card className='eventWinners shadow' style={{margin:"5px 2px",minWidth:"200px",fontSize:"1rem"}}>  
                           <Card.Body>      
                           <p className='h6'>Winners</p>                      
                             <ol style={{fontSize:"1rem"}}>

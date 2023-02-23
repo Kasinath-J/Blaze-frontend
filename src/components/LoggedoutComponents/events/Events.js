@@ -83,7 +83,7 @@ export class Events extends React.Component{
         return(
             <div className="container" style={{marginBottom:"6%"}}>
                 
-                <section id="eventsMaincarousel">
+                <section id="eventsMaincarousel" style={{marginTop:"5%",border:"0.3px black solid"}}>
                     {
                         photos_for_carousel.length!==0 && <MainCarousel img={photos_for_carousel}/>
                     }
@@ -91,24 +91,26 @@ export class Events extends React.Component{
 
                 <section id="eventsGallery">
                     <div className='display-1' id="eventsTitle" style={{"marginTop":"4%"}}>Events</div>
-                    <div id="eventsFilter">
+                    <div id="eventsFilter" style={{marginBottom:"15px"}}>
                         {this.state.categories.map((category,index)=>{
 
                             var variant = "light";
                             if(this.state.curr_category===category)
                                 variant="dark";
 
-                            return <Button key={index} variant={variant} style={{margin:"5px",padding:"5px"}} 
+                            return <Button key={index} variant={variant} style={{margin:"5px",padding:"10px 20px",boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px"}} 
                                     onClick={()=>{
                                         this.setState({
                                             ...this.state,
                                             curr_category:category,
                                           });
                                     }}
+                                    
                                     > {category} </Button>
                         })}
                     </div>
                     <Scrollbar event={this.state.events} /> 
+
                     {
                         this.state.events.filter((event)=>this.state.curr_category==="All" || event.officetype===this.state.curr_category).map((event,index)=>{
                         return(

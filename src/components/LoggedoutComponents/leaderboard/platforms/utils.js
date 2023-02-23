@@ -13,7 +13,7 @@ export function rearrangeTable(table,search)
         if(table[i].email === search)
         {
             var temp = table[i];
-            temp.name = '('+(i+1)+') '+temp.name ;
+            temp.name = '( Rank '+(i+1)+') '+temp.name ;
             table.splice(i,1);
             table.unshift(temp);
             break;
