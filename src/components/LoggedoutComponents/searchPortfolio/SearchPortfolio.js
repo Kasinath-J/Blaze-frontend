@@ -13,14 +13,16 @@ export function SearchPortfolio(props)
     var window_height = Math.floor(window.innerHeight*0.92);
     const navigate = useNavigate();
     const [options,setOptions] = useState(null);
+    const [suggested,setSuggested] = useState(null);
     const [search,setSearch] = useState("");
 
     useEffect(() => {
         axiosInstance.get(`users/emaillist/`)
             .then(resp => resp.data)
             .then((resp) => {
+                setOptions(resp);
                 // to show aleast profiles with either linkedin or github
-                setOptions(resp.filter((op)=>(op.linkedin!==null || op.github!==null)));
+                setSuggested(resp.filter((op)=>(op.linkedin!==null || op.github!==null)))
             })
         }, [])
 
@@ -38,15 +40,15 @@ export function SearchPortfolio(props)
     {
         datalist = options.map((op)=>{return {id:op.email,value:op.email};})
     }
-    
+
     var available_years = new Map();
-    for(var option of options)
+    for(var s of suggested)
     {
-        var inst = available_years.has(option.year);
+        var inst = available_years.has(s.year);
         if(inst===false)
-        available_years.set(option.year,1);
+        available_years.set(s.year,1);
         else
-        available_years.set(option.year,available_years.get(option.year)+1);
+        available_years.set(s.year,available_years.get(s.year)+1);
     }
     available_years = Array.from(available_years, ([year, count]) => ({ year, count }));
 
