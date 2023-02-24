@@ -167,7 +167,7 @@ export function LeetcodeDisplay(){
 
     var table = year.filter(user=>typeof user.leetcode_score == "number")
                     .map((user)=>{
-                        return {name:user.name,value: Math.round(user.leetcode_score/1000),email:user.email}
+                        return {name:user.name,value: Math.round(user.leetcode_score),email:user.email}
                     })
                     .sort(function(a,b) {
                         return a.value - b.value;
