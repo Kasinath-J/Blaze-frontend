@@ -64,14 +64,23 @@ export function UpdateProfile (props) {
 	}, []);
 
 	function handleChange(e){
-        if(e.target.name ==="name" && e.target.value.trim()==="")
+        if(e.target.name ==="name")
         {
-            return;
+            var nameElement = document.querySelector('form[name=updateForm] input[name=name]')
+            if(e.target.value.trim()==="")
+            {
+                nameElement.style.border = "2px solid red"
+            }
+            else
+            {
+                nameElement.style.border = "None"
+            }
         }
+        
 
 		setData({
 			...data,
-			[e.target.name]: e.target.value.trim(),
+			[e.target.name]: e.target.value,
 		});
 
         setSubmitted(null);        
@@ -84,15 +93,20 @@ export function UpdateProfile (props) {
         element.classList.add("blink");
 
         var info = document.getElementById("updateProfileInfo1");
-        info.classList.add("blink")
-
-        var info = document.getElementById("updateProfileInfo2");
-        info.classList.add("blink")
+        info.classList.add("blink") 
 
     }
     
     function handleSubmit(e){
         e.preventDefault();
+
+        if(data.name.trim()==="")
+        {
+            setToast(true);
+            setSubmitted("Name shouldn't be empty")
+            return;
+        }
+
         var sendData = data
         setLoading(true);
 
@@ -196,13 +210,9 @@ export function UpdateProfile (props) {
                                 Click <img src="https://img.icons8.com/ios/50/000000/open-in-window.png" height="20px" width="28px" alt="verify" style={{padding:"0 4px"}}/>
                                 and verify your username
                         </div>
-                        <Form >
+                        <Form name="updateForm">
                             <div>
                                 {form}
-                            </div>
-                            <div id="updateProfileInfo2" style={{marginLeft:"10px",fontSize:"0.85rem",width:"100%"}}>
-                                Click <img src="https://img.icons8.com/ios/50/000000/open-in-window.png" height="20px" width="28px" alt="verify" style={{padding:"0 4px"}}/>
-                                and verify your username
                             </div>
                             <Button variant="primary" type="submit" style={{float:"right",marginRight:"20px"}} onClick={handleSubmit}>
                                 {loading===false?"Submit":<Spinner animation="border" variant="light" />}

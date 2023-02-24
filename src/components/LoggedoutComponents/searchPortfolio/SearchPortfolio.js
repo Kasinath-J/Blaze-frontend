@@ -19,7 +19,8 @@ export function SearchPortfolio(props)
         axiosInstance.get(`users/emaillist/`)
             .then(resp => resp.data)
             .then((resp) => {
-                setOptions(resp);
+                // to show aleast profiles with either linkedin or github
+                setOptions(resp.filter((op)=>(op.linkedin!==null || op.github!==null)));
             })
         }, [])
 
@@ -60,7 +61,6 @@ export function SearchPortfolio(props)
         var randints = []
         var returnList = [];
         var iteration = Math.min(4,maxcount)
-        var temp;
         while(randints.length < iteration)
         {
             var temp = getRandomInt(maxcount);
