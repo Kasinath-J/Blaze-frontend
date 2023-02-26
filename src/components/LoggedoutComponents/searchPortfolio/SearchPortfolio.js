@@ -52,7 +52,6 @@ export function SearchPortfolio(props)
     }
     available_years = Array.from(available_years, ([year, count]) => ({ year, count }));
 
-    
     function getRandomInt(max) {
         var temp =  Math.floor(Math.random() * max);
         return temp;
@@ -113,7 +112,7 @@ export function SearchPortfolio(props)
                                             <h3>Batch {obj.year}</h3>
                                             <div style={{display:"flex",flexWrap:"wrap"}}>
                                                 {
-                                                    some(options.filter(option=>option.year===obj.year),obj.count)
+                                                    some(suggested.filter(option=>option.year===obj.year),obj.count)
                                                                 .map((option,index2)=>
                                                                 {
                                                                     return  <Button key={index2} style={{backgroundColor:"rgba(0,0,0,0)",border:"none",padding:"0",margin:"0"}}>
