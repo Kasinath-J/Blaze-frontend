@@ -47,7 +47,7 @@ export class Events extends React.Component{
         this.state = {
             events:null,
             DataisLoaded:false,
-            categories:["All","CSBS","ASI"],
+            categories:["All","CSBSA","ASI"],
             curr_category:"All"
         }
     }

@@ -103,14 +103,14 @@ export function Home(){
 
                             <div style={{padding:"3% 0 5%",textAlign:"center"}}>
                                 <h1 className="display-3" style={{fontWeight:"500"}}>
-                                    CSBS Office Bearers
+                                    CSBSA Office Bearers
                                 </h1>
                                 <h3><small className="text-muted">Of Academic Year {data[0].present_academic_year}</small></h3>    
                                 </div>
                             
                             <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-around"}}>
                             {
-                                data.sort((a,b)=>a.rank-b.rank).filter((d)=>{return d.officetype==='CSBS'}).map((d)=>{
+                                data.sort((a,b)=>a.rank-b.rank).filter((d)=>{return d.officetype==='CSBSA'}).map((d)=>{
                                     return <div className="col-6 col-md-3" key={d.id}>
                                                 <Photo data={d}/>
                                             </div>
