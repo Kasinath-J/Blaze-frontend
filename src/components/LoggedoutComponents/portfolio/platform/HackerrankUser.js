@@ -123,7 +123,7 @@ export function HackerrankUser(props) {
                 
             case "Sql" :
                 return <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-    viewBox="0 0 98.3 98.8" style="enable-background:new 0 0 98.3 98.8;" >
+    viewBox="0 0 98.3 98.8"  >
 <title>Artboard 8</title>
 <g>
    <ellipse class="st0" cx="48.5" cy="22.8" rx="43.3" ry="15"/>
