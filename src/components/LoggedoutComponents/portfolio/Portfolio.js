@@ -161,7 +161,7 @@ export function Portfolio() {
           {/* right container */}
           <div id="portfolioRight" className="col-lg-3 col-md-7 col-12 ms-md-auto py-5 px-4 " style={{height:window_width<=991?null:window_height,overflow:"scroll"}}>
             {
-              data.hackerrank&&((data.hackerrank.badges&&data.hackerrank.badges.length!==0)||(data.hackerrank.certificates&&data.hackerrank.certificates.length!==0))&&(
+              data.hackerrank&&((data.hackerrank.badges&&Object.keys(data.hackerrank.badges).length !== 0)||(data.hackerrank.certificates&&data.hackerrank.certificates.length!==0))&&(
                 <>
                   <HackerrankUser data={data["hackerrank"]} />
                   <hr />
