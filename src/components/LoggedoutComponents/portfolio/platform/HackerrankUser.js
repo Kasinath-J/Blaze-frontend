@@ -272,7 +272,7 @@ export function HackerrankUser(props) {
         <div className="pb-1" style={{ fontSize: "1.75rem" }}>
             Hackerrank
         </div>      
-        {props.data.badges&&props.data.badges!==0&&<div><p className='mt-2'>Badges earned : </p>
+        {props.data.badges&&Object.keys(props.data.badges).length !== 0&&<div><p className='mt-2'>Badges earned : </p>
             <div style={{"display":"flex","justifyContent":"space-evenly","flexWrap":"wrap"}}>
             {props.data.badges.map((badge,index)=>{
                 return(
@@ -308,7 +308,7 @@ export function HackerrankUser(props) {
             </div>
         }
 
-        {props.data.certificates&&props.data.certificates!==0&&
+        {props.data.certificates&&props.data.certificates.length!==0&&
             <div>
                 <p id="portfolioHackerrankCertificates" className='mt-2'>Verified Skills : </p>
                 <div style={{display:"flex",justifyContent:"space-around"}}>

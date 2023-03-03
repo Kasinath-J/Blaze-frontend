@@ -87,7 +87,7 @@ export function CodechefDisplay(){
             text: "Total Problems Solved" ,
             fontFamily: "verdana",   
         },
-        axisY: axisY({interval: 15,includeZero: false,}),
+        axisY: axisY({interval: 75,includeZero: false,}),
         axisX:axisX({title:"Name",}),
         toolTip:blackToolTip(),
 
