@@ -71,7 +71,7 @@ export function LeetcodeDisplay(){
                             .sort((a,b)=>{return (b.no_easy_qns+b.no_medium_qns+b.no_difficult_qns) -( a.no_easy_qns+a.no_medium_qns+a.no_difficult_qns)})
                             .map((user)=>{
                                 if(user.email===search)
-                                    return {label: user.name, y: user.no_easy_qns, color:"#ffb800"};
+                                    return {label: user.name, y: user.no_medium_qns, color:"#ffb800"};
 
                                 return {label: user.name, y: user.no_medium_qns}
                             })
@@ -85,7 +85,7 @@ export function LeetcodeDisplay(){
                             .sort((a,b)=>{return (b.no_easy_qns+b.no_medium_qns+b.no_difficult_qns) -( a.no_easy_qns+a.no_medium_qns+a.no_difficult_qns)})
                             .map((user)=>{
                                 if(user.email===search)
-                                    return {label: user.name, y: user.no_easy_qns, color:"#EF4743"};
+                                    return {label: user.name, y: user.no_difficult_qns, color:"#EF4743"};
 
                                 return {label: user.name, y: user.no_difficult_qns}
                             })
@@ -159,7 +159,7 @@ export function LeetcodeDisplay(){
                             .sort((a,b)=>{return b.skills_len - a.skills_len})
                             .map((user)=>{
                                 if(user.email===search)
-                                    return {label: user.name, y: user.no_easy_qns, color:"#ff4d6d"};
+                                    return {label: user.name, y: user.skills_len, color:"#ff4d6d"};
                                 return {label: user.name, y: user.skills_len}
                             })
         }]
