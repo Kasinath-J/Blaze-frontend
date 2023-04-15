@@ -133,7 +133,7 @@ export function Home(){
                             </div>
                             <div className="col-lg-9 col-12" >
                                 <h1 className="display-3" style={{padding:"3% 0",fontWeight:"500"}}>About ASI</h1>
-                                <p className="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque perspiciatis, ex quam quas deserunt suscipit minus commodi corporis animi vitae aperiam, a sint ipsum rem recusandae maiores. Excepturi, eaque velit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque nemo cupiditate alias quidem, corrupti repellat perspiciatis eligendi possimus velit quas quae itaque ex pariatur rem, nesciunt ipsam id expedita laborum.</p>
+                                <p className="lead">Analytics Society of India is the first and largest body of analytics professionals and organisations in India. It is a nationallevel not-for-profit organization. The society has been founded by eminent personalities from Indian Institute ofScience, Bangalore (IISc) and Indian Institute of Management, Bangalore (IIMB) with an objective of promoting andpropagating knowledge in the area of analytics. Various blue-chip corporate organisations, educational institutionsand individuals from across the country are members of this society. ASI provides a platform for organisations andpeople to come together to share their knowledge, resources and address their challenges in the field of analytics. It promotes research and application in this domain. ASI regularly organizes workshops, seminars, conferences, andtechnical talks for the benefit of professionals in analytics domain.</p>
                             </div>
                         </div> 
                     </div>
