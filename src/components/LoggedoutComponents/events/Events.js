@@ -26,12 +26,15 @@ function Scrollbar(props){
             <button style={{border:"none",backgroundColor:"rgba(0,0,0,0",padding:"0.5rem",margin:"0"}}>
                 {/* <div style={{height:"7px", width:"7px", backgroundColor:"black"}} onMouseOver={MouseOver} onMouseOut={MouseOut}></div> */}
                 <div style={{height:"0.5rem", width:"0.5rem", backgroundColor:"black",float:"right",borderRadius:"0.5rem"}}></div>
-                <p style={{ color:"black",textShadow:" 2px 2px white",marginBottom:"0"}}>{id.substring(0,3)+"_"+id.substring(5,7)}</p>
+                <p style={{ color:"black",textShadow:" 2px 2px white",marginBottom:"0",fontSize:"0.9rem"}}>{id.substring(0,3)+"_"+id.substring(5,7)}</p>
             </button>
         </Link>
     
         );
     })
+
+    if(window.innerWidth<420)
+        return <></>
 
     return(
         <div id="eventScrollbar" style={{display:"flex",flexDirection:"column",justifyContent:"space-around",width:"60px",position:"sticky", borderRight:"0.5px black solid",top:"60px",float:"right",zIndex:"100", height:window.innerHeight*0.85}}>
