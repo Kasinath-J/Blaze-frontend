@@ -145,7 +145,7 @@ export function LinkedinDisplay(){
     <>
         <div className="col-lg-6 col-sm-8 graphContainer" id="LeaderboardLinkedinGraph">
             <Filter data = {data} setYear = {setYear} year={year} setSearch={setSearch} search={search} />
-            // <div className='graphs'><GenericGraph options={options_1}/></div>
+            
             <div className='graphs'><GenericGraph options={options_3}/></div>
 
             <section id="LinkedinBoxDetails">
@@ -178,7 +178,7 @@ export function LinkedinDisplay(){
                 </div>
             </section>
 
-            // <div className='graphs'><GenericGraph options={options_3}/></div>
+            
         </div>
 
         <div className="col-lg-3 col-sm-8 offset-lg-0 offset-sm-4 userContainer" id="LeaderboardLeetcodeUser">
