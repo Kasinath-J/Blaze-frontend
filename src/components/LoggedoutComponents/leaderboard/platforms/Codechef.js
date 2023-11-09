@@ -45,7 +45,7 @@ export function CodechefDisplay(){
             {        
                 type: "column",  
                 dataPoints : year.filter(user=> typeof user.problems_solved == "number")
-                                .sort((a,b)=>{return a.problems_solved - b.problems_solved})
+                                .sort((a,b)=>{return b.problems_solved - a.problems_solved})
                                 .map((user)=>{
                                     if(user.email===search)
                                         return {label:user.name, y:user.problems_solved,color:"black"};
@@ -113,7 +113,7 @@ export function CodechefDisplay(){
                         value: Math.round(user.codechef_score),email:user.email}
                     })
                     .sort(function(a,b) {
-                        return a.value - b.value;
+                        return b.value - a.value;
                     }); 
 
     table = rearrangeTable(table,search);     
