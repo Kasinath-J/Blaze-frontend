@@ -29,8 +29,35 @@ export function CodechefDisplay(){
                 </div>
     }
 
-    
     const options_1 = {
+        animationEnabled: true,
+        height:graph_height,
+        title:{
+            text: "Total Problems Solved" ,
+            fontFamily: "verdana",   
+        },
+        axisY: axisY({interval: 75,includeZero: false,}),
+        axisX:axisX({title:"Name",}),
+        toolTip:blackToolTip(),
+
+        colorSet:"blackToGreen",
+        data: [
+            {        
+                type: "column",  
+                dataPoints : year.filter(user=> typeof user.problems_solved == "number")
+                                .sort((a,b)=>{return a.problems_solved - b.problems_solved})
+                                .map((user)=>{
+                                    if(user.email===search)
+                                        return {label:user.name, y:user.problems_solved,color:"black"};
+
+                                    return {label:user.name, y:user.problems_solved};
+                                })
+            },
+        ]
+    }
+
+    
+    const options_2 = {
         animationEnabled: true,
         height:graph_height,
         title:{
@@ -56,7 +83,7 @@ export function CodechefDisplay(){
         ]
     }
 
-    const options_2 = {
+    const options_3 = {
         animationEnabled: true,
         height:graph_height,
         title:{
@@ -80,33 +107,7 @@ export function CodechefDisplay(){
         ]
     }
 
-    const options_3 = {
-        animationEnabled: true,
-        height:graph_height,
-        title:{
-            text: "Total Problems Solved" ,
-            fontFamily: "verdana",   
-        },
-        axisY: axisY({interval: 75,includeZero: false,}),
-        axisX:axisX({title:"Name",}),
-        toolTip:blackToolTip(),
-
-        colorSet:"blackToGreen",
-        data: [
-            {        
-                type: "column",  
-                dataPoints : year.filter(user=> typeof user.problems_solved == "number")
-                                .sort((a,b)=>{return b.problems_solved - a.problems_solved})
-                                .map((user)=>{
-                                    if(user.email===search)
-                                        return {label:user.name, y:user.problems_solved,color:"black"};
-
-                                    return {label:user.name, y:user.problems_solved};
-                                })
-            },
-        ]
-    }
-
+    
     var table = year.filter(user=>typeof user.codechef_score ==="number" && user.codechef_score!==0)
                     .map((user)=>{return {name:user.name,
                         value: Math.round(user.codechef_score),email:user.email}
