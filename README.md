@@ -1,4 +1,5 @@
 # [Blaze]([url](https://csbs-blaze.vercel.app/))
+Cross-platform developer analytics tool to benchmark coding performance (LeetCode, HackerRank, CodeChef, Codeforces) and professional presence (GitHub, LinkedIn) against peers in one unified view.
 
 To improve the competitive programming skills and to compare an individual with his/her peer group can make the individual understand where they stand between their friends and peer group. 
 This analysis of an individual among other students should not be limited to a single platform, but should be for various platforms such as Leetcode, Hackerrank, Codechef, and CodeForces.
